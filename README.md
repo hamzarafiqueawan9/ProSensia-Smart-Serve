@@ -1,39 +1,36 @@
-# 🏭 ProSensia Smart-Serve: System Hub
+# ProSensia Smart-Serve: System Hub
 
-Welcome Team Alpha. This is the **Core Foundation** of the ProSensia mission. This backend acts as the orchestrator, built to lead and support all other workstation tasks.
+Welcome Team Alpha. This is the **Core Foundation** of the ProSensia mission. This backend acts as the orchestrator for all factory logistics tasks.
 
 ---
 
-## 🚀 System Startup Guide
+## 🚀 Quick Start Guide
 
-Follow these steps to initialize the ProSensia "Brain" on your environment:
-
-### Option A: Standard Deployment (PostgreSQL)
-
-Run this command to build the full production environment.
+**Step 1: Get the Code**
 
 ```bash
-docker-compose up --build
+git clone https://github.com/1Khizar/ProSensia-Smart-Serve.git
+cd ProSensia-Smart-Serve/backend
 ```
 
-### Option B: Developer Sandbox (SQLite)
-
-Use this for rapid backend testing and local API development.
+**Step 2: Install & Run**
 
 ```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the server
 uvicorn app.main:app --reload
 ```
 
----
+**Step 3: Verify**
 
-## 🔗 Connection & Verification
-
-Once the system is running, access the **Interactive Manual** at:
-👉 **[http://localhost:8000/docs](http://localhost:8000/docs)**
+- **API Terminal:** Runs at `http://localhost:8000`
+- **Interactive Docs:** 👉 [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
-## 🤝 Team Alpha: Integration
+## 🤝 Team Alpha: Integration Handshakes
 
 ### 1. For Hamza (Lead Frontend)
 
