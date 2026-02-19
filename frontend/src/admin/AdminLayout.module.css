@@ -132,3 +132,62 @@
     padding: 28px;
   }
 }
+
+/* ─── Desktop (1024px+) ─── */
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 260px;
+    padding: 28px 22px;
+  }
+
+  .main {
+    padding: 36px 44px;
+  }
+
+  .link,
+  .linkActive {
+    padding: 13px 18px;
+    font-size: 0.9rem;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+}
+
+/* ─── Wide Desktop (1400px+) ─── */
+
+@media (min-width: 1400px) {
+  .sidebar {
+    width: 280px;
+    padding: 32px 24px;
+  }
+
+  .main {
+    padding: 48px 60px;
+  }
+
+  .link,
+  .linkActive {
+    padding: 14px 20px;
+    font-size: 0.92rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+}
+
+/* ─── Ultra-wide (1800px+) ─── */
+
+@media (min-width: 1800px) {
+  .sidebar {
+    width: 300px;
+    padding: 36px 28px;
+  }
+
+  .main {
+    padding: 56px 80px;
+  }
+}

@@ -1,7 +1,7 @@
 /* ─── Admin Dashboard / Orders / Users ─── */
 
 .page {
-  max-width: 900px;
+  width: 100%;
   animation: slideUp .4s var(--ease-out) both;
 }
 
@@ -478,5 +478,98 @@
 
   .orderId {
     grid-column: 1 / -1;
+  }
+}
+
+/* ─ Desktop (1024px+) ─ */
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .cardValue {
+    font-size: 1.7rem;
+  }
+
+  .orderRow {
+    grid-template-columns: 1fr auto auto auto auto;
+    gap: 16px;
+    padding: 15px 20px;
+  }
+
+  .statusBadge {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 14px 18px;
+  }
+
+  .orderHeader {
+    padding: 16px 24px;
+  }
+
+  .orderDetails {
+    padding: 0 24px 24px 24px;
+  }
+
+  .itemRow {
+    padding: 12px 16px;
+  }
+}
+
+/* ─ Wide Desktop (1400px+) ─ */
+
+@media (min-width: 1400px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .cardValue {
+    font-size: 1.85rem;
+  }
+
+  .orderRow {
+    padding: 16px 24px;
+    font-size: 0.95rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 16px 22px;
+  }
+}
+
+/* ─ Ultra-wide (1800px+) ─ */
+
+@media (min-width: 1800px) {
+  .cards {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+
+  .orderRow {
+    padding: 18px 28px;
   }
 }

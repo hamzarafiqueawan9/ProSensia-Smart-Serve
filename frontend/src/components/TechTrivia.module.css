@@ -109,3 +109,73 @@
 .closeBtn:active {
   transform: translateY(0);
 }
+
+/* ─── Small phone ─── */
+
+@media (max-width: 374px) {
+  .modal {
+    padding: 22px 18px;
+  }
+  .title {
+    font-size: 1.05rem;
+  }
+  .question {
+    font-size: 0.92rem;
+  }
+}
+
+/* ─── Tablet (768px+) ─── */
+
+@media (min-width: 768px) {
+  .overlay {
+    padding: 28px;
+  }
+  .modal {
+    max-width: 480px;
+    padding: 36px 32px;
+  }
+  .title {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .question {
+    font-size: 1.1rem;
+  }
+  .answer {
+    font-size: 1rem;
+    padding: 18px 22px;
+  }
+  .revealBtn,
+  .closeBtn {
+    padding: 14px;
+    font-size: 1rem;
+  }
+}
+
+/* ─── Desktop (1024px+) ─── */
+
+@media (min-width: 1024px) {
+  .modal {
+    max-width: 560px;
+    padding: 44px 40px;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .question {
+    font-size: 1.15rem;
+    margin-bottom: 24px;
+  }
+  .answer {
+    padding: 20px 24px;
+  }
+}
+
+/* ─── Wide Desktop (1400px+) ─── */
+
+@media (min-width: 1400px) {
+  .modal {
+    max-width: 620px;
+    padding: 48px 44px;
+  }
+}

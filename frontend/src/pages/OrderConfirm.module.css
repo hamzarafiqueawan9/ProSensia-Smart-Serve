@@ -14,7 +14,7 @@
   background: var(--glass);
   backdrop-filter: blur(16px);
   border-radius: var(--radius-xl);
-  padding: 32px 24px;
+  padding: 28px 20px;
   text-align: center;
   border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-lg), var(--shadow-glow);
@@ -154,4 +154,105 @@
 .backLink {
   font-weight: 600;
   font-size: 0.88rem;
+}
+
+/* ─── Small phone ─── */
+
+@media (max-width: 374px) {
+  .card {
+    padding: 24px 16px;
+  }
+  .badge {
+    font-size: 0.78rem;
+    padding: 6px 14px;
+  }
+}
+
+/* ─── Tablet (768px+) ─── */
+
+@media (min-width: 768px) {
+  .page {
+    padding-top: 40px;
+  }
+  .card {
+    max-width: 500px;
+    padding: 40px 36px;
+  }
+  .badge {
+    font-size: 0.92rem;
+    padding: 10px 22px;
+  }
+  .orderId {
+    font-size: 0.92rem;
+  }
+  .station {
+    font-size: 1.12rem;
+  }
+  .items {
+    font-size: 1rem;
+    padding: 18px 0;
+    gap: 8px;
+  }
+  .items li {
+    padding: 8px 12px;
+  }
+  .eta {
+    font-size: 0.95rem;
+  }
+  .trackBtn {
+    padding: 17px 28px;
+    font-size: 1.05rem;
+  }
+}
+
+/* ─── Desktop (1024px+) ─── */
+
+@media (min-width: 1024px) {
+  .page {
+    padding-top: 56px;
+  }
+  .card {
+    max-width: 560px;
+    padding: 48px 44px;
+  }
+  .badge {
+    font-size: 0.95rem;
+    padding: 12px 26px;
+  }
+  .badge::before {
+    width: 22px;
+    height: 22px;
+    font-size: 0.8rem;
+  }
+  .orderId {
+    font-size: 1rem;
+  }
+  .station {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  .items {
+    font-size: 1.05rem;
+    padding: 20px 0;
+  }
+  .trackBtn {
+    padding: 18px 32px;
+    font-size: 1.08rem;
+  }
+  .backLink {
+    font-size: 0.95rem;
+    margin-top: 4px;
+  }
+}
+
+/* ─── Wide Desktop (1400px+) ─── */
+
+@media (min-width: 1400px) {
+  .page {
+    padding-top: 68px;
+  }
+  .card {
+    max-width: 620px;
+    padding: 56px 52px;
+  }
 }

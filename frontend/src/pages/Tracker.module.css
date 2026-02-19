@@ -1,7 +1,7 @@
 /* ─── Tracker Page ─── */
 
 .page {
-  max-width: 400px;
+  max-width: 440px;
   margin: 0 auto;
   padding-top: 16px;
   animation: slideUp .4s var(--ease-out) both;
@@ -253,4 +253,130 @@
 .feedbackSubmit:not(:disabled):hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-accent);
+}
+
+/* ─── Small phone ─── */
+
+@media (max-width: 374px) {
+  .page {
+    max-width: 100%;
+    padding-top: 12px;
+  }
+  .stepDot {
+    width: 24px;
+    height: 24px;
+  }
+  .stepLabel {
+    font-size: 0.65rem;
+  }
+}
+
+/* ─── Tablet (768px+) ─── */
+
+@media (min-width: 768px) {
+  .page {
+    max-width: 580px;
+    padding-top: 36px;
+  }
+  .orderId {
+    font-size: 0.9rem;
+  }
+  .station {
+    font-size: 1.2rem;
+    margin-bottom: 36px;
+  }
+  .stepDot {
+    width: 36px;
+    height: 36px;
+  }
+  .stepLabel {
+    font-size: 0.82rem;
+  }
+  .statusText {
+    font-size: 1.08rem;
+    padding: 22px 28px;
+  }
+  .statusText strong {
+    font-size: 1.2rem;
+  }
+  .triviaBtn {
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    padding: 16px 22px;
+  }
+  .feedbackCard {
+    padding: 28px 26px;
+  }
+  .feedbackTitle {
+    font-size: 1.1rem;
+  }
+  .starsRow {
+    gap: 8px;
+  }
+  .starBtn {
+    width: 42px;
+    height: 42px;
+    font-size: 1.3rem;
+  }
+  .feedbackInput {
+    font-size: 0.95rem;
+    padding: 12px 14px;
+  }
+  .feedbackSubmit {
+    font-size: 1rem;
+    padding: 14px 18px;
+  }
+}
+
+/* ─── Desktop (1024px+) ─── */
+
+@media (min-width: 1024px) {
+  .page {
+    max-width: 660px;
+    padding-top: 48px;
+  }
+  .orderId {
+    font-size: 0.95rem;
+  }
+  .station {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+  }
+  .progressWrap {
+    margin-bottom: 40px;
+    padding: 0 24px;
+  }
+  .stepDot {
+    width: 40px;
+    height: 40px;
+  }
+  .stepLabel {
+    font-size: 0.88rem;
+  }
+  .statusText {
+    font-size: 1.15rem;
+    padding: 28px 36px;
+  }
+  .statusText strong {
+    font-size: 1.35rem;
+  }
+  .feedbackCard {
+    padding: 32px 30px;
+  }
+  .starBtn {
+    width: 46px;
+    height: 46px;
+    font-size: 1.4rem;
+  }
+}
+
+/* ─── Wide Desktop (1400px+) ─── */
+
+@media (min-width: 1400px) {
+  .page {
+    max-width: 720px;
+    padding-top: 56px;
+  }
 }
