@@ -24,10 +24,13 @@ wheels/
 # Virtual Environment
 venv/
 ENV/
+backend/venv/
+
 
 # Database
 prosensia.db
 *.sqlite3
+backend/prosensia.db
 
 # Environment variables
 .env
