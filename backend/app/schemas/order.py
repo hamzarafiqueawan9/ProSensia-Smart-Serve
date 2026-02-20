@@ -1,4 +1,3 @@
-from datetime import datetime
 from pydantic import BaseModel
 
 class OrderCreate(BaseModel):
@@ -11,13 +10,9 @@ class OrderStatusUpdate(BaseModel):
 
 class OrderResponse(BaseModel):
     id: int
-    station: str
-    item: str
-    priority: str
     status: str
-    runner_id: int | None = None
-    eta_minutes: int | None = None
-    created_at: datetime
+    runner_id: int
+    eta_minutes: int
 
     class Config:
         from_attributes = True
