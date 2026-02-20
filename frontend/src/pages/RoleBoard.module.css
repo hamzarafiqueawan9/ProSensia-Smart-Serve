@@ -1,0 +1,257 @@
+/* ─── Kitchen / Runner Board ─── */
+
+.page {
+  width: 100%;
+  animation: slideUp .4s var(--ease-out) both;
+}
+
+.headRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+/* ─ Cards ─ */
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.card {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: all .3s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  border-radius: 0 99px 99px 0;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.card:hover {
+  border-color: var(--accent-glow);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.orderId {
+  font-family: ui-monospace, monospace;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.statusPill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid var(--accent-glow);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.item {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.meta {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 3px;
+}
+
+/* ─ Action buttons ─ */
+
+.actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.primaryBtn,
+.secondaryBtn,
+.refreshBtn {
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all .25s var(--ease-out);
+  letter-spacing: 0.01em;
+}
+
+.primaryBtn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dim));
+  color: #000;
+  border: 1px solid transparent;
+  box-shadow: var(--shadow-accent);
+}
+
+.primaryBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(16,185,129,.35);
+}
+
+.secondaryBtn,
+.refreshBtn {
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+}
+
+.secondaryBtn:hover:not(:disabled),
+.refreshBtn:hover:not(:disabled) {
+  border-color: var(--accent-glow);
+  background: var(--glass-hover);
+  transform: translateY(-1px);
+}
+
+.primaryBtn:disabled,
+.secondaryBtn:disabled {
+  opacity: .4;
+  cursor: default;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.refreshBtn {
+  min-width: 88px;
+}
+
+/* ─ States ─ */
+
+.error {
+  color: var(--danger);
+  font-size: 0.88rem;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  background: var(--danger-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(239,68,68,.2);
+}
+
+.empty {
+  color: var(--text-muted);
+  padding: 28px 16px;
+  text-align: center;
+  border-radius: var(--radius);
+  border: 1px dashed var(--glass-border);
+  background: var(--glass);
+  font-size: 0.9rem;
+}
+
+/* ─── Tablet 2-col (640px+) ─── */
+
+@media (min-width: 640px) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .card {
+    padding: 20px;
+  }
+  .title {
+    font-size: 1.45rem;
+  }
+}
+
+/* ─── Desktop 3-col (1024px+) ─── */
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 1.6rem;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+  .list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+  .card {
+    padding: 24px;
+  }
+  .item {
+    font-size: 1.1rem;
+  }
+  .meta {
+    font-size: 0.85rem;
+  }
+  .primaryBtn,
+  .secondaryBtn,
+  .refreshBtn {
+    padding: 12px 20px;
+    font-size: 0.88rem;
+  }
+}
+
+/* ─── Wide Desktop 4-col (1400px+) ─── */
+
+@media (min-width: 1400px) {
+  .title {
+    font-size: 1.75rem;
+  }
+  .list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+  }
+  .card {
+    padding: 26px;
+  }
+}
+
+/* ─── Ultra-wide (1800px+) ─── */
+
+@media (min-width: 1800px) {
+  .list {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 24px;
+  }
+}

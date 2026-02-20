@@ -1,53 +1,82 @@
+/* ─── Admin Dashboard / Orders / Users ─── */
+
 .page {
-  max-width: 900px;
+  width: 100%;
+  animation: slideUp .4s var(--ease-out) both;
 }
 
 .title {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 800;
   margin-bottom: 4px;
+  letter-spacing: -0.03em;
 }
 
 .subtitle {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   margin-bottom: 24px;
 }
 
+/* ─ Stat cards ─ */
+
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 12px;
   margin-bottom: 24px;
 }
 
 .card {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  background: var(--glass);
+  backdrop-filter: blur(12px);
   border-radius: var(--radius);
-  padding: 20px;
-  border: 1px solid var(--surface-2);
+  padding: 18px;
+  border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  transition: all .3s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity .2s;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md), var(--shadow-glow);
   border-color: var(--accent-glow);
+}
+
+.card:hover::after {
+  opacity: 1;
 }
 
 .cardLabel {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
 }
 
 .cardValue {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--accent);
+  letter-spacing: -0.02em;
 }
+
+/* ─ Sections ─ */
 
 .section {
   margin-bottom: 24px;
@@ -61,15 +90,22 @@
 }
 
 .sectionTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 .viewAll {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--accent);
-  font-weight: 500;
+  font-weight: 600;
+  transition: opacity .2s;
 }
+
+.viewAll:hover {
+  opacity: .8;
+}
+
+/* ─ Status badges ─ */
 
 .statusRow {
   display: flex;
@@ -82,22 +118,26 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  background: var(--glass);
+  backdrop-filter: blur(8px);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--surface-2);
-  font-size: 0.9rem;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
+  border: 1px solid var(--glass-border);
+  font-size: 0.85rem;
+  transition: all .25s var(--ease-out);
 }
 
 .statusBadge:hover {
   border-color: var(--accent-glow);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 .statusBadge strong {
   color: var(--accent);
+  font-weight: 700;
 }
+
+/* ─ Order list rows ─ */
 
 .orderList {
   list-style: none;
@@ -108,18 +148,18 @@
   grid-template-columns: 1fr auto auto auto;
   gap: 12px;
   align-items: center;
-  padding: 14px 16px;
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  padding: 13px 16px;
+  background: var(--glass);
   border-radius: var(--radius-sm);
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-  border: 1px solid var(--surface-2);
-  transition: all 0.2s ease;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+  border: 1px solid var(--glass-border);
+  transition: all .25s var(--ease-out);
 }
 
 .orderRow:hover {
   border-color: var(--accent-glow);
-  transform: translateX(4px);
+  transform: translateX(3px);
   box-shadow: var(--shadow-sm);
 }
 
@@ -130,51 +170,59 @@
 }
 
 .orderStation {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .orderStatus {
   color: var(--accent);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 .orderTime {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
 }
 
 .empty {
   color: var(--text-muted);
-  padding: 24px;
+  padding: 28px;
   text-align: center;
+  border: 1px dashed var(--glass-border);
+  border-radius: var(--radius);
+  background: var(--glass);
 }
+
+/* ─ Table ─ */
 
 .tableWrap {
   overflow-x: auto;
   border-radius: var(--radius);
-  border: 1px solid var(--surface-2);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  backdrop-filter: blur(10px);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .table th,
 .table td {
   padding: 12px 14px;
   text-align: left;
-  border-bottom: 1px solid var(--surface-2);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .table th {
-  background: var(--surface);
+  background: rgba(255,255,255,.02);
   color: var(--text-muted);
-  font-weight: 600;
-  font-size: 0.8rem;
+  font-weight: 700;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .table tbody tr:last-child td {
@@ -182,29 +230,31 @@
 }
 
 .table tbody tr:hover td {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255,255,255,.015);
 }
 
 .mono {
   font-family: ui-monospace, monospace;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
 }
 
 .stationCell {
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .statusPill {
   display: inline-block;
-  padding: 4px 10px;
-  background: rgba(34, 197, 94, 0.15);
+  padding: 4px 12px;
+  background: var(--accent-subtle);
   color: var(--accent);
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid var(--accent-glow);
 }
 
-/* Expandable Order Cards */
+/* ─ Users / Clear ─ */
+
 .usersHeaderRow {
   display: flex;
   justify-content: flex-end;
@@ -214,39 +264,41 @@
 .clearAllBtn {
   padding: 8px 14px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--surface-2);
-  background: linear-gradient(135deg, #3f3f46, #27272f);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
   color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all .25s var(--ease-out);
 }
 
 .clearAllBtn:hover {
-  color: #f97373;
-  border-color: #f97373;
-  background: rgba(248, 113, 113, 0.1);
+  color: var(--danger);
+  border-color: rgba(239,68,68,.45);
+  background: var(--danger-subtle);
 }
 
 .deleteUserBtn {
   padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(248, 113, 113, 0.4);
-  background: rgba(248, 113, 113, 0.08);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(239,68,68,.35);
+  background: rgba(239,68,68,.06);
   color: #fecaca;
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 700;
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: all 0.2s ease;
+  transition: all .2s var(--ease-out);
 }
 
 .deleteUserBtn:hover {
-  background: rgba(248, 113, 113, 0.2);
+  background: rgba(239,68,68,.18);
   border-color: #fca5a5;
 }
+
+/* ─ Expandable order cards ─ */
 
 .ordersList {
   display: flex;
@@ -255,11 +307,12 @@
 }
 
 .orderCard {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  background: var(--glass);
+  backdrop-filter: blur(10px);
   border-radius: var(--radius);
-  border: 1px solid var(--surface-2);
+  border: 1px solid var(--glass-border);
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all .3s var(--ease-out);
 }
 
 .orderCard:hover {
@@ -273,13 +326,13 @@
   justify-content: space-between;
   padding: 14px 18px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background .2s;
   flex-wrap: wrap;
   gap: 12px;
 }
 
 .orderHeader:hover {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(255,255,255,.015);
 }
 
 .orderHeaderLeft {
@@ -295,7 +348,7 @@
   font-size: 0.75rem;
   width: 16px;
   text-align: center;
-  transition: transform 0.2s ease;
+  transition: transform .2s var(--ease-out);
 }
 
 .orderHeaderRight {
@@ -307,25 +360,19 @@
 
 .orderItemCount {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
 }
 
 .orderDetails {
   padding: 0 18px 18px 18px;
-  border-top: 1px solid var(--surface-2);
-  background: rgba(0, 0, 0, 0.2);
-  animation: slideDown 0.3s ease;
+  border-top: 1px solid var(--glass-border);
+  background: rgba(0,0,0,.15);
+  animation: slideDown .3s var(--ease-out);
 }
 
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    max-height: 0;
-  }
-  to {
-    opacity: 1;
-    max-height: 500px;
-  }
+  from { opacity: 0; max-height: 0; }
+  to   { opacity: 1; max-height: 500px; }
 }
 
 .detailsSection {
@@ -334,8 +381,8 @@
 }
 
 .detailsTitle {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--text-muted);
   margin-bottom: 12px;
   text-transform: uppercase;
@@ -354,19 +401,19 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 12px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0,0,0,.15);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--surface-2);
+  border: 1px solid var(--glass-border);
 }
 
 .itemName {
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text);
 }
 
 .itemPrice {
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .detailsFooter {
@@ -374,24 +421,24 @@
   flex-direction: column;
   gap: 8px;
   padding-top: 12px;
-  border-top: 1px solid var(--surface-2);
+  border-top: 1px solid var(--glass-border);
 }
 
 .detailRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .detailLabel {
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .detailValue {
   color: var(--text);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .detailValue:first-of-type {
@@ -401,14 +448,18 @@
 
 .urgentBadge {
   display: inline-block;
-  padding: 3px 8px;
-  background: rgba(234, 179, 8, 0.2);
+  padding: 3px 9px;
+  background: var(--warning-subtle);
   color: var(--warning);
-  border-radius: 999px;
-  font-size: 0.7rem;
-  font-weight: 600;
+  border-radius: var(--radius-full);
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(234,179,8,.2);
 }
+
+/* ─ Mobile ─ */
 
 @media (max-width: 767px) {
   .orderHeader {
@@ -424,7 +475,101 @@
   .orderRow {
     grid-template-columns: 1fr 1fr;
   }
+
   .orderId {
     grid-column: 1 / -1;
+  }
+}
+
+/* ─ Desktop (1024px+) ─ */
+
+@media (min-width: 1024px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .cardValue {
+    font-size: 1.7rem;
+  }
+
+  .orderRow {
+    grid-template-columns: 1fr auto auto auto auto;
+    gap: 16px;
+    padding: 15px 20px;
+  }
+
+  .statusBadge {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 14px 18px;
+  }
+
+  .orderHeader {
+    padding: 16px 24px;
+  }
+
+  .orderDetails {
+    padding: 0 24px 24px 24px;
+  }
+
+  .itemRow {
+    padding: 12px 16px;
+  }
+}
+
+/* ─ Wide Desktop (1400px+) ─ */
+
+@media (min-width: 1400px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .cardValue {
+    font-size: 1.85rem;
+  }
+
+  .orderRow {
+    padding: 16px 24px;
+    font-size: 0.95rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 16px 22px;
+  }
+}
+
+/* ─ Ultra-wide (1800px+) ─ */
+
+@media (min-width: 1800px) {
+  .cards {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+
+  .orderRow {
+    padding: 18px 28px;
   }
 }

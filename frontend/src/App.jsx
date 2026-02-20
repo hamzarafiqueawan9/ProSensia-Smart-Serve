@@ -1,9 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { OrderProvider } from './context/OrderContext'
 import Layout from './components/Layout'
+import StaffRoute from './components/StaffRoute'
 import Menu from './pages/Menu'
 import OrderConfirm from './pages/OrderConfirm'
 import Tracker from './pages/Tracker'
+import Kitchen from './pages/Kitchen'
+import Runner from './pages/Runner'
+import StaffLogin from './pages/StaffLogin'
 import AdminLayout from './admin/AdminLayout'
 import AdminDashboard from './admin/AdminDashboard'
 import AdminOrders from './admin/AdminOrders'
@@ -18,6 +22,23 @@ export default function App() {
           <Route path="menu" element={<Menu />} />
           <Route path="order/:orderId" element={<OrderConfirm />} />
           <Route path="track/:orderId" element={<Tracker />} />
+          <Route path="staff-login" element={<StaffLogin />} />
+          <Route
+            path="kitchen"
+            element={(
+              <StaffRoute role="kitchen">
+                <Kitchen />
+              </StaffRoute>
+            )}
+          />
+          <Route
+            path="runner"
+            element={(
+              <StaffRoute role="runner">
+                <Runner />
+              </StaffRoute>
+            )}
+          />
         </Route>
 
         <Route path="/admin" element={<AdminLayout />}>

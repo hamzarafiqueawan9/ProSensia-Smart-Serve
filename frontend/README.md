@@ -15,6 +15,12 @@ React website for the Game Plan: **mobile-first**, responsive, with customer flo
   - **Orders** — All orders with status (live).
   - **Users** — Stations that placed orders (monitor by station).
 
+- **Staff role panels (protected)**
+  - **Kitchen** (`/kitchen`) and **Runner** (`/runner`) are blocked for normal users.
+  - Use **Staff login** (`/staff-login`) to unlock role access.
+  - Default passcodes: `kitchen123` and `runner123`.
+  - You can override using env vars: `VITE_KITCHEN_PASSCODE`, `VITE_RUNNER_PASSCODE`.
+
 ## Run
 
 ```bash

@@ -1,30 +1,28 @@
+/* ─── Tech Trivia Modal ─── */
+
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
   padding: 20px;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  animation: fadeIn .25s ease;
 }
 
 .modal {
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  max-width: 360px;
+  background: var(--surface-solid);
+  border-radius: var(--radius-xl);
+  padding: 28px 24px;
+  max-width: 380px;
   width: 100%;
-  border: 1px solid var(--surface-2);
-  box-shadow: var(--shadow-lg), 0 0 40px rgba(34, 197, 94, 0.1);
-  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
+  animation: scaleIn .35s var(--ease-spring);
   position: relative;
   overflow: hidden;
 }
@@ -32,69 +30,57 @@
 .modal::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-dim), var(--accent));
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
 .title {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 16px;
   color: var(--accent);
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
-  text-shadow: 0 0 10px var(--accent-glow);
+  letter-spacing: -0.02em;
 }
 
 .question {
-  font-size: 1.05rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.7;
   margin-bottom: 20px;
   color: var(--text);
   font-weight: 500;
 }
 
 .answer {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text);
-  margin-bottom: 24px;
-  padding: 16px;
-  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-3) 100%);
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: var(--accent-subtle);
   border-radius: var(--radius-sm);
   border: 1px solid var(--accent-glow);
-  box-shadow: 0 0 12px rgba(34, 197, 94, 0.1);
-  animation: fadeIn 0.3s ease;
+  animation: fadeIn .3s ease;
+  line-height: 1.6;
 }
 
 .revealBtn {
-  padding: 12px 20px;
-  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-3) 100%);
+  padding: 12px;
+  background: var(--glass);
   color: var(--text);
   border-radius: var(--radius-sm);
   font-weight: 600;
-  margin-bottom: 16px;
+  font-size: 0.92rem;
+  margin-bottom: 10px;
   width: 100%;
-  border: 1px solid var(--surface-2);
-  transition: all 0.3s ease;
+  border: 1px solid var(--glass-border);
+  transition: all .25s var(--ease-out);
 }
 
 .revealBtn:hover {
-  background: var(--surface-3);
   border-color: var(--accent-glow);
-  transform: translateY(-2px);
+  background: var(--glass-hover);
+  transform: translateY(-1px);
 }
 
 .revealBtn:active {
@@ -105,22 +91,91 @@
 
 .closeBtn {
   width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+  padding: 13px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dim));
   color: #000;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   border-radius: var(--radius-sm);
-  transition: all 0.3s ease;
+  transition: all .25s var(--ease-out);
   box-shadow: var(--shadow-accent);
 }
 
 .closeBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(34, 197, 94, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgba(16,185,129,.35);
 }
 
 .closeBtn:active {
   transform: translateY(0);
-  box-shadow: var(--shadow-sm);
+}
+
+/* ─── Small phone ─── */
+
+@media (max-width: 374px) {
+  .modal {
+    padding: 22px 18px;
+  }
+  .title {
+    font-size: 1.05rem;
+  }
+  .question {
+    font-size: 0.92rem;
+  }
+}
+
+/* ─── Tablet (768px+) ─── */
+
+@media (min-width: 768px) {
+  .overlay {
+    padding: 28px;
+  }
+  .modal {
+    max-width: 480px;
+    padding: 36px 32px;
+  }
+  .title {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .question {
+    font-size: 1.1rem;
+  }
+  .answer {
+    font-size: 1rem;
+    padding: 18px 22px;
+  }
+  .revealBtn,
+  .closeBtn {
+    padding: 14px;
+    font-size: 1rem;
+  }
+}
+
+/* ─── Desktop (1024px+) ─── */
+
+@media (min-width: 1024px) {
+  .modal {
+    max-width: 560px;
+    padding: 44px 40px;
+  }
+  .title {
+    font-size: 1.5rem;
+  }
+  .question {
+    font-size: 1.15rem;
+    margin-bottom: 24px;
+  }
+  .answer {
+    padding: 20px 24px;
+  }
+}
+
+/* ─── Wide Desktop (1400px+) ─── */
+
+@media (min-width: 1400px) {
+  .modal {
+    max-width: 620px;
+    padding: 48px 44px;
+  }
 }

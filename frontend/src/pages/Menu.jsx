@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { useOrder } from '../context/OrderContext'
 import styles from './Menu.module.css'
@@ -50,23 +50,43 @@ const MENU_ITEMS = [
 
 export default function Menu() {
   const [searchParams] = useSearchParams()
-  const station = useMemo(() => {
+  const stationFromQuery = useMemo(() => {
     // Prefer explicit station name if provided, e.g. ?station=Bay-12
     const stationParam = searchParams.get('station')
-    if (stationParam) return stationParam
+    if (stationParam && stationParam.trim()) return stationParam.trim()
 
     // Also support pure table number from QR, e.g. ?table=12 → "Table-12"
     const tableParam = searchParams.get('table')
-    if (tableParam) return `Table-${tableParam}`
+    if (tableParam && tableParam.trim()) return `Table-${tableParam.trim()}`
 
-    return 'Unknown'
+    return ''
   }, [searchParams])
+  const [stationInput, setStationInput] = useState(() => {
+    if (stationFromQuery) return stationFromQuery
+    const savedStation = localStorage.getItem('stc_station_name')
+    return savedStation?.trim() || ''
+  })
   const [cart, setCart] = useState([])
   const [urgent, setUrgent] = useState(false)
   const [placing, setPlacing] = useState(false)
   const [error, setError] = useState(null)
   const { placeOrder } = useOrder()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (stationFromQuery) {
+      setStationInput(stationFromQuery)
+    }
+  }, [stationFromQuery])
+
+  useEffect(() => {
+    const trimmed = stationInput.trim()
+    if (trimmed) {
+      localStorage.setItem('stc_station_name', trimmed)
+    }
+  }, [stationInput])
+
+  const station = stationInput.trim()
 
   const addItem = (item) => {
     setCart((c) => [...c, { ...item, key: `${item.id}-${Date.now()}` }])
@@ -80,11 +100,21 @@ export default function Menu() {
 
   const handlePlaceOrder = async () => {
     if (cart.length === 0) return
+    let stationToUse = station
+    if (!stationToUse) {
+      const typedStation = window.prompt('Enter your table/station name (e.g. Table-12):', '')
+      stationToUse = typedStation?.trim() || ''
+      if (!stationToUse) {
+        setError('Please enter your table/station name before placing order.')
+        return
+      }
+      setStationInput(stationToUse)
+    }
     setError(null)
     setPlacing(true)
     try {
       const orderId = await placeOrder({
-        station,
+        station: stationToUse,
         items: cart.map(({ id, name, price }) => ({ id, name, price })),
         urgent,
       })
@@ -99,12 +129,21 @@ export default function Menu() {
   return (
     <div className={styles.page}>
       <div className={styles.stationBar}>
-        <span className={styles.stationLabel}>Your station</span>
-        <span className={styles.stationValue}>{station}</span>
+        <label htmlFor="station-input" className={styles.stationLabel}>Your station</label>
+        <input
+          id="station-input"
+          className={styles.stationInput}
+          value={stationInput}
+          onChange={(e) => setStationInput(e.target.value)}
+          placeholder="e.g. Table-12 / Bay-A"
+          autoComplete="off"
+        />
       </div>
 
       <h1 className={styles.title}>Menu</h1>
-      <p className={styles.subtitle}>Tap to add — we’ll bring it to {station}</p>
+      <p className={styles.subtitle}>
+        Tap to add — we’ll bring it to {station || 'your station'}
+      </p>
 
       <ul className={styles.menuList}>
         {MENU_ITEMS.map((item) => (
@@ -154,6 +193,19 @@ export default function Menu() {
                 </li>
               ))}
             </ul>
+            <div className={styles.cartStationRow}>
+              <label htmlFor="station-input-inline" className={styles.cartStationLabel}>
+                Delivery table / station
+              </label>
+              <input
+                id="station-input-inline"
+                className={styles.cartStationInput}
+                value={stationInput}
+                onChange={(e) => setStationInput(e.target.value)}
+                placeholder="e.g. Table-12 / Bay-A"
+                autoComplete="off"
+              />
+            </div>
             <label className={styles.urgentLabel}>
               <input
                 type="checkbox"

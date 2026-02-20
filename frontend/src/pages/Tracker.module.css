@@ -1,44 +1,48 @@
+/* ─── Tracker Page ─── */
+
 .page {
-  max-width: 360px;
+  max-width: 440px;
   margin: 0 auto;
-  padding-top: 12px;
+  padding-top: 16px;
+  animation: slideUp .4s var(--ease-out) both;
 }
 
 .orderId {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   font-family: ui-monospace, monospace;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 
 .station {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   margin-bottom: 28px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--text-secondary);
 }
 
 .station strong {
   color: var(--accent);
-  text-shadow: 0 0 8px var(--accent-glow);
 }
+
+/* ─ Progress stepper ─ */
 
 .progressWrap {
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  padding: 0 4px;
 }
 
 .progressBar {
   position: absolute;
-  left: 0;
-  top: 10px;
-  height: 5px;
-  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-dim) 100%);
-  border-radius: 3px;
-  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  left: 0; top: 13px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-dim));
+  border-radius: 99px;
+  transition: width .65s var(--ease-out);
   z-index: 0;
-  box-shadow: 0 0 12px var(--accent-glow);
+  box-shadow: 0 0 16px var(--accent-glow);
 }
 
 .steps {
@@ -46,7 +50,6 @@
   z-index: 1;
   display: flex;
   justify-content: space-between;
-  padding: 0 4px;
 }
 
 .step {
@@ -58,89 +61,95 @@
 }
 
 .stepDot {
-  width: 24px;
-  height: 24px;
+  width: 28px; height: 28px;
   border-radius: 50%;
-  background: var(--surface-2);
-  border: 2px solid var(--surface-2);
-  margin-bottom: 8px;
-  transition: background 0.3s, border-color 0.3s;
+  background: var(--surface-solid);
+  border: 2px solid var(--glass-border);
+  margin-bottom: 10px;
+  transition: all .35s var(--ease-spring);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
 }
 
 .step.stepDone .stepDot {
   background: var(--accent);
   border-color: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+  transform: scale(1.1);
 }
 
 .stepLabel {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
   text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
 .step.stepDone .stepLabel {
   color: var(--accent);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .stepLine {
   position: absolute;
-  top: 10px;
-  left: 0;
-  right: 0;
-  height: 4px;
+  top: 13px; left: 0; right: 0;
+  height: 3px;
   background: var(--surface-2);
-  border-radius: 2px;
+  border-radius: 99px;
   z-index: -1;
 }
 
+/* Status card */
 .statusText {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   margin-bottom: 20px;
-  padding: 14px 18px;
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  padding: 16px 20px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
   border-radius: var(--radius);
-  border: 1px solid var(--surface-2);
+  border: 1px solid var(--glass-border);
   text-align: center;
+  color: var(--text-secondary);
 }
 
 .statusText strong {
   color: var(--accent);
   font-size: 1.1rem;
-  text-shadow: 0 0 10px var(--accent-glow);
   display: block;
   margin-top: 4px;
 }
 
+/* Trivia CTA */
 .triviaBtn {
   display: block;
   width: 100%;
   padding: 14px 18px;
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  background: var(--glass);
   color: var(--accent);
   border: 1px solid var(--accent-glow);
   border-radius: var(--radius);
   font-weight: 600;
+  font-size: 0.92rem;
   margin-bottom: 16px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 12px rgba(34, 197, 94, 0.1);
+  transition: all .3s var(--ease-out);
 }
 
 .triviaBtn:hover {
-  background: var(--surface-2);
+  background: var(--accent-subtle);
   border-color: var(--accent);
-  box-shadow: 0 0 20px var(--accent-glow);
   transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent-glow);
 }
 
-.triviaBtn:active {
-  transform: translateY(0);
-}
+.triviaBtn:active { transform: translateY(0); }
 
 .menuLink {
   display: inline-block;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
 .error {
@@ -148,61 +157,75 @@
   margin-bottom: 12px;
 }
 
+/* ─ Feedback Card ─ */
+
 .feedbackCard {
-  margin-top: 20px;
+  margin-top: 24px;
   margin-bottom: 16px;
-  padding: 16px 14px;
-  border-radius: var(--radius);
-  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
-  border: 1px solid var(--surface-2);
+  padding: 20px 18px;
+  border-radius: var(--radius-lg);
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
   box-shadow: var(--shadow-sm);
+  animation: slideUp .35s var(--ease-out) both;
 }
 
 .feedbackTitle {
   font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 10px;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .starsRow {
   display: flex;
-  gap: 4px;
-  margin-bottom: 10px;
+  gap: 6px;
+  margin-bottom: 12px;
 }
 
 .starBtn {
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  border: 1px solid var(--surface-2);
-  background: var(--surface-2);
+  width: 34px; height: 34px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
   color: var(--text-muted);
-  font-size: 1rem;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all .2s var(--ease-spring);
+}
+
+.starBtn:hover {
+  transform: scale(1.15);
 }
 
 .starActive {
-  background: rgba(250, 204, 21, 0.18);
+  background: rgba(250,204,21,.15);
   border-color: #facc15;
   color: #fde047;
-  text-shadow: 0 0 8px rgba(250, 204, 21, 0.6);
+  box-shadow: 0 0 12px rgba(250,204,21,.25);
+  transform: scale(1.1);
 }
 
 .feedbackInput {
   width: 100%;
-  margin-top: 6px;
-  margin-bottom: 10px;
-  padding: 8px 10px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--surface-2);
-  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   resize: vertical;
+  transition: border-color .2s;
+}
+
+.feedbackInput:focus {
+  outline: none;
+  border-color: var(--accent-glow);
 }
 
 .feedbackInput::placeholder {
@@ -211,23 +234,149 @@
 
 .feedbackSubmit {
   width: 100%;
-  padding: 10px 14px;
+  padding: 12px 14px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
+  background: linear-gradient(135deg, var(--accent), var(--accent-dim));
   color: #000;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 0.92rem;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all .25s var(--ease-out);
 }
 
 .feedbackSubmit:disabled {
-  opacity: 0.6;
+  opacity: .5;
   cursor: default;
 }
 
 .feedbackSubmit:not(:disabled):hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-accent);
+}
+
+/* ─── Small phone ─── */
+
+@media (max-width: 374px) {
+  .page {
+    max-width: 100%;
+    padding-top: 12px;
+  }
+  .stepDot {
+    width: 24px;
+    height: 24px;
+  }
+  .stepLabel {
+    font-size: 0.65rem;
+  }
+}
+
+/* ─── Tablet (768px+) ─── */
+
+@media (min-width: 768px) {
+  .page {
+    max-width: 580px;
+    padding-top: 36px;
+  }
+  .orderId {
+    font-size: 0.9rem;
+  }
+  .station {
+    font-size: 1.2rem;
+    margin-bottom: 36px;
+  }
+  .stepDot {
+    width: 36px;
+    height: 36px;
+  }
+  .stepLabel {
+    font-size: 0.82rem;
+  }
+  .statusText {
+    font-size: 1.08rem;
+    padding: 22px 28px;
+  }
+  .statusText strong {
+    font-size: 1.2rem;
+  }
+  .triviaBtn {
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    padding: 16px 22px;
+  }
+  .feedbackCard {
+    padding: 28px 26px;
+  }
+  .feedbackTitle {
+    font-size: 1.1rem;
+  }
+  .starsRow {
+    gap: 8px;
+  }
+  .starBtn {
+    width: 42px;
+    height: 42px;
+    font-size: 1.3rem;
+  }
+  .feedbackInput {
+    font-size: 0.95rem;
+    padding: 12px 14px;
+  }
+  .feedbackSubmit {
+    font-size: 1rem;
+    padding: 14px 18px;
+  }
+}
+
+/* ─── Desktop (1024px+) ─── */
+
+@media (min-width: 1024px) {
+  .page {
+    max-width: 660px;
+    padding-top: 48px;
+  }
+  .orderId {
+    font-size: 0.95rem;
+  }
+  .station {
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+  }
+  .progressWrap {
+    margin-bottom: 40px;
+    padding: 0 24px;
+  }
+  .stepDot {
+    width: 40px;
+    height: 40px;
+  }
+  .stepLabel {
+    font-size: 0.88rem;
+  }
+  .statusText {
+    font-size: 1.15rem;
+    padding: 28px 36px;
+  }
+  .statusText strong {
+    font-size: 1.35rem;
+  }
+  .feedbackCard {
+    padding: 32px 30px;
+  }
+  .starBtn {
+    width: 46px;
+    height: 46px;
+    font-size: 1.4rem;
+  }
+}
+
+/* ─── Wide Desktop (1400px+) ─── */
+
+@media (min-width: 1400px) {
+  .page {
+    max-width: 720px;
+    padding-top: 56px;
+  }
 }
