@@ -1,8 +1,10 @@
+from typing import List
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.database import get_db
 from app.schemas.order import OrderCreate, OrderResponse, OrderStatusUpdate
-from app.services.order_service import create_order, update_order_status
+from app.services.order_service import create_order, update_order_status, list_orders
 from app.db.models import Order
 
 router = APIRouter()
@@ -17,6 +19,12 @@ async def get_status(order_id: int, db: AsyncSession = Depends(get_db)):
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
     return order
+
+@router.get("/orders", response_model=List[OrderResponse])
+async def get_orders(db: AsyncSession = Depends(get_db)):
+    """Return all orders in reverse chronological order."""
+    return await list_orders(db)
+
 
 @router.patch("/status/{order_id}", response_model=OrderResponse)
 async def update_status(order_id: int, status_update: OrderStatusUpdate, db: AsyncSession = Depends(get_db)):

@@ -39,3 +39,10 @@ async def update_order_status(db, order_id: int, new_status: str):
     await db.commit()
     await db.refresh(order)
     return order
+
+
+# new helper for listing orders (used by kitchen/runner/admin UIs)
+async def list_orders(db):
+    """Return all orders, newest first."""
+    result = await db.execute(select(Order).order_by(Order.id.desc()))
+    return result.scalars().all()

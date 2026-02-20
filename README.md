@@ -207,6 +207,7 @@ Preparing  ──►  On Way  ──►  Delivered
 | POST   | `/order`       | Create a new order                | `{station, item, priority}` | `{id, status, runner_id, eta_minutes}`                |
 | GET    | `/status/{id}` | Get order status & ETA            | —                            | `{id, status, runner_id, eta_minutes}`                |
 | PATCH  | `/status/{id}` | Update order status               | `{status}`                  | `{id, status, runner_id, eta_minutes}`                |
+| GET    | `/orders`       | List all orders (used by staff UIs) | —                          | `[{id, station, item, priority, status, runner_id, eta_minutes, created_at}]` |
 | GET    | `/docs`        | Swagger UI (interactive API docs) | —                            | HTML                                                    |
 
 ### Example: Create an Order
