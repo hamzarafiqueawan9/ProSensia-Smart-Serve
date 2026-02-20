@@ -44,6 +44,31 @@
   font-size: 0.92rem;
 }
 
+.stationInput {
+  min-width: 190px;
+  max-width: 260px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-align: right;
+  transition: border-color .2s var(--ease-out), box-shadow .2s var(--ease-out);
+}
+
+.stationInput::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stationInput:focus {
+  outline: none;
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 0 3px rgba(16,185,129,.15);
+}
+
 /* Page heading */
 .title {
   font-size: 1.6rem;
@@ -175,6 +200,43 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.cartStationRow {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.cartStationLabel {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cartStationInput {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: border-color .2s var(--ease-out), box-shadow .2s var(--ease-out);
+}
+
+.cartStationInput::placeholder {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.cartStationInput:focus {
+  outline: none;
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 0 3px rgba(16,185,129,.15);
 }
 
 .cartItem {
@@ -321,6 +383,16 @@
 /* ─── Small phone (< 375px) ─── */
 
 @media (max-width: 374px) {
+  .stationBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .stationInput {
+    min-width: 100%;
+    max-width: 100%;
+    text-align: left;
+  }
   .title {
     font-size: 1.4rem;
   }
@@ -361,6 +433,11 @@
   .stationValue {
     font-size: 1rem;
   }
+  .stationInput {
+    min-width: 240px;
+    max-width: 320px;
+    font-size: 0.92rem;
+  }
   .title {
     font-size: 2rem;
   }
@@ -398,6 +475,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+  }
+  .cartStationRow {
+    max-width: 360px;
   }
   .cartImage {
     width: 48px;
